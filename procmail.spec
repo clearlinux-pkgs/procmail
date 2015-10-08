@@ -4,7 +4,7 @@
 #
 Name     : procmail
 Version  : 3.22
-Release  : 1
+Release  : 2
 URL      : ftp://ftp.ucsb.edu/pub/mirrors/procmail/procmail-3.22.tar.gz
 Source0  : ftp://ftp.ucsb.edu/pub/mirrors/procmail/procmail-3.22.tar.gz
 Summary  : procmail mail delivery agent
