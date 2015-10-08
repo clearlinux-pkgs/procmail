@@ -1,0 +1,20 @@
+--- procmail-3.22/Makefile	2015-10-07 09:08:52.242022361 -0700
++++ procmail-3.22/Makefile	2015-10-08 15:14:57.737987368 -0700
+@@ -2,7 +2,7 @@
+ 
+ # BASENAME should point to where the whole lot will be installed
+ # change BASENAME to your home directory if need be
+-BASENAME	= /usr
++BASENAME	= $(BUILDROOT)/usr
+ # For display in the man pages
+ VISIBLE_BASENAME= $(BASENAME)
+ 
+@@ -11,7 +11,7 @@
+ #ARCHITECTURE	=.sun4
+ 
+ BINDIR_TAIL	= bin$(ARCHITECTURE)
+-MANDIR		= $(BASENAME)/man
++MANDIR		= $(BASENAME)/share/man
+ BINDIR		= $(BASENAME)/$(BINDIR_TAIL)
+ VISIBLE_BINDIR	= $(VISIBLE_BASENAME)/$(BINDIR_TAIL)
+ # MAN1SUFFIX for regular utility manuals
