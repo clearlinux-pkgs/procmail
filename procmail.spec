@@ -4,7 +4,7 @@
 #
 Name     : procmail
 Version  : 3.22
-Release  : 2
+Release  : 3
 URL      : ftp://ftp.ucsb.edu/pub/mirrors/procmail/procmail-3.22.tar.gz
 Source0  : ftp://ftp.ucsb.edu/pub/mirrors/procmail/procmail-3.22.tar.gz
 Summary  : procmail mail delivery agent
@@ -14,6 +14,7 @@ Requires: procmail-bin
 Requires: procmail-doc
 Patch1: mandir.patch
 Patch2: getline.patch
+Patch3: CVE-2014-3618.patch
 
 %description
 Most mail servers such as sendmail need to have a local delivery agent.
@@ -41,6 +42,7 @@ doc components for the procmail package.
 %setup -q -n procmail-3.22
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 make V=1  %{?_smp_mflags}
