@@ -1,3 +1,5 @@
-mandir.patch
-getline.patch
 CVE-2014-3618.patch
+fix_memory_allocation_bug.patch
+formisc.c.patch
+getline.patch
+mandir.patch

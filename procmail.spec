@@ -4,17 +4,20 @@
 #
 Name     : procmail
 Version  : 3.22
-Release  : 6
-URL      : ftp://ftp.ucsb.edu/pub/mirrors/procmail/procmail-3.22.tar.gz
-Source0  : ftp://ftp.ucsb.edu/pub/mirrors/procmail/procmail-3.22.tar.gz
+Release  : 2
+URL      : http://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
+Source0  : http://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
 Summary  : procmail mail delivery agent
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: procmail-bin
-Requires: procmail-doc
-Patch1: mandir.patch
-Patch2: getline.patch
-Patch3: CVE-2014-3618.patch
+Requires: procmail-bin = %{version}-%{release}
+Requires: procmail-license = %{version}-%{release}
+Requires: procmail-man = %{version}-%{release}
+Patch1: CVE-2014-3618.patch
+Patch2: fix_memory_allocation_bug.patch
+Patch3: formisc.c.patch
+Patch4: getline.patch
+Patch5: mandir.patch
 
 %description
 Most mail servers such as sendmail need to have a local delivery agent.
@@ -25,17 +28,27 @@ incoming mail automatically.  SmartList also needs procmail to operate.
 %package bin
 Summary: bin components for the procmail package.
 Group: Binaries
+Requires: procmail-license = %{version}-%{release}
+Requires: procmail-man = %{version}-%{release}
 
 %description bin
 bin components for the procmail package.
 
 
-%package doc
-Summary: doc components for the procmail package.
-Group: Documentation
+%package license
+Summary: license components for the procmail package.
+Group: Default
 
-%description doc
-doc components for the procmail package.
+%description license
+license components for the procmail package.
+
+
+%package man
+Summary: man components for the procmail package.
+Group: Default
+
+%description man
+man components for the procmail package.
 
 
 %prep
@@ -43,12 +56,27 @@ doc components for the procmail package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
-make V=1  %{?_smp_mflags}
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1549607338
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+make  %{?_smp_mflags}
+
 
 %install
+export SOURCE_DATE_EPOCH=1549607338
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/procmail
+cp COPYING %{buildroot}/usr/share/package-licenses/procmail/COPYING
 %make_install
 
 %files
@@ -61,7 +89,15 @@ rm -rf %{buildroot}
 /usr/bin/mailstat
 /usr/bin/procmail
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man5/*
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/procmail/COPYING
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/formail.1
+/usr/share/man/man1/lockfile.1
+/usr/share/man/man1/procmail.1
+/usr/share/man/man5/procmailex.5
+/usr/share/man/man5/procmailrc.5
+/usr/share/man/man5/procmailsc.5

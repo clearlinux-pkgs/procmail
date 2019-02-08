@@ -1,5 +1,5 @@
 PKG_NAME := procmail
-URL := ftp://ftp.ucsb.edu/pub/mirrors/procmail/procmail-3.22.tar.gz
-ARCHIVES :=
+URL = http://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common
