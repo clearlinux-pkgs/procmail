@@ -4,7 +4,7 @@
 #
 Name     : procmail
 Version  : 3.22
-Release  : 7
+Release  : 8
 URL      : http://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
 Source0  : http://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
 Summary  : procmail mail delivery agent
@@ -15,9 +15,9 @@ Requires: procmail-license = %{version}-%{release}
 Requires: procmail-man = %{version}-%{release}
 Patch1: CVE-2014-3618.patch
 Patch2: fix_memory_allocation_bug.patch
-Patch3: formisc.c.patch
-Patch4: getline.patch
-Patch5: mandir.patch
+Patch3: getline.patch
+Patch4: mandir.patch
+Patch5: CVE-2017-16844.patch
 
 %description
 Most mail servers such as sendmail need to have a local delivery agent.
@@ -64,7 +64,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549607338
+export SOURCE_DATE_EPOCH=1550168673
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -73,7 +73,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1549607338
+export SOURCE_DATE_EPOCH=1550168673
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/procmail
 cp COPYING %{buildroot}/usr/share/package-licenses/procmail/COPYING
