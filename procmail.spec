@@ -4,7 +4,7 @@
 #
 Name     : procmail
 Version  : 3.22
-Release  : 9
+Release  : 10
 URL      : https://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
 Source0  : https://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
 Summary  : procmail mail delivery agent
