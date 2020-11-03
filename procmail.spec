@@ -4,9 +4,9 @@
 #
 Name     : procmail
 Version  : 3.22
-Release  : 10
-URL      : https://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
-Source0  : https://deb.debian.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
+Release  : 11
+URL      : https://mirrors.kernel.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
+Source0  : https://mirrors.kernel.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
 Summary  : procmail mail delivery agent
 Group    : Development/Tools
 License  : GPL-2.0
@@ -52,6 +52,7 @@ man components for the procmail package.
 
 %prep
 %setup -q -n procmail-3.22
+cd %{_builddir}/procmail-3.22
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -63,20 +64,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567276952
+export SOURCE_DATE_EPOCH=1604442168
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1567276952
+export SOURCE_DATE_EPOCH=1604442168
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/procmail
-cp COPYING %{buildroot}/usr/share/package-licenses/procmail/COPYING
+cp %{_builddir}/procmail-3.22/COPYING %{buildroot}/usr/share/package-licenses/procmail/aac97ddcbe9232a375d87b7f09a54a9674fc8175
 %make_install
 
 %files
@@ -91,7 +92,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/procmail/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/procmail/COPYING
+/usr/share/package-licenses/procmail/aac97ddcbe9232a375d87b7f09a54a9674fc8175
 
 %files man
 %defattr(0644,root,root,0755)
