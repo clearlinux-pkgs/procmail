@@ -4,7 +4,7 @@
 #
 Name     : procmail
 Version  : 3.22
-Release  : 11
+Release  : 12
 URL      : https://mirrors.kernel.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
 Source0  : https://mirrors.kernel.org/debian/pool/main/p/procmail/procmail_3.22.orig.tar.gz
 Summary  : procmail mail delivery agent
@@ -66,10 +66,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
 export SOURCE_DATE_EPOCH=1604442168
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 make  %{?_smp_mflags}
 
 
